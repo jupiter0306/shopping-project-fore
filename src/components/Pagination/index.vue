@@ -1,23 +1,23 @@
 <template>
     <div class="pagination">
-        <button @click="changeCurrentPage(1)">1</button>
+        <button @click="$emit('changeCurrentPage',1)">1</button>
         <!-- 当前页为1时不可用 -->
-        <button :disabled="currentPage===1" @click="changeCurrentPage(currentPage-1)">上一页</button>
+        <button :disabled="currentPage===1" @click="$emit('changeCurrentPage',currentPage-1)">上一页</button>
         <!-- start>2才显示省略号 -->
         <button v-show="startEnd.start>2" disabled>···</button>
         <!-- 生成从start到end的连续数组 -->
         <button 
         v-for="(item,index) in generateArray(startEnd.start,startEnd.end)" 
         :key="index"
-        @click="changeCurrentPage(item)"
+        @click="$emit('changeCurrentPage',item)"
         :class="{'active':item === currentPage}">
             {{item}}
         </button>
         <!-- end<totalPage-1才显示省略号 -->
         <button v-show="startEnd.end<totalPage-1" disabled>···</button>
         <!-- 当前页为totalPage时不可用 -->
-        <button @click="changeCurrentPage(totalPage)">{{totalPage}}</button>
-        <button :disabled="currentPage===totalPage" @click="changeCurrentPage(currentPage+1)">下一页</button>
+        <button @click="$emit('changeCurrentPage',totalPage)">{{totalPage}}</button>
+        <button :disabled="currentPage===totalPage" @click="$emit('changeCurrentPage',currentPage+1)">下一页</button>
         <button style="margin-left: 30px">共 {{total}} 条</button>
     </div>
 </template>
@@ -72,9 +72,6 @@ export default {
         generateArray (start, end) {
             return Array.from(new Array(end + 1).keys()).slice(start)
         },
-        changeCurrentPage(currentPage){
-            this.$emit('changeCurrentPage',currentPage)
-        }
     }
 
 }

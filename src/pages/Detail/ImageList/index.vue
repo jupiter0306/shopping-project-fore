@@ -25,10 +25,8 @@ export default {
       imageList:Array
     },
     // 不能在mounted的时候就发 因为此时imageList里面还没值呢 要watch 等值存进来了在发
-    // watch里写this.imageList 默认的是newValue。。
     watch:{
       imageList(){
-          // this.$bus.$emit('imageChange',newV[0].imgUrl)
           this.$bus.$emit('imageChange',this.imageList[0].imgUrl)
       }
     },

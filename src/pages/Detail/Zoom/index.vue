@@ -44,7 +44,7 @@ export default {
               mask.style.top = y + 'px'
               bigImg.style.left = -2*x + 'px'
               bigImg.style.top = -2*y + 'px'
-          },200),
+          },100),
       imageChange(url){
         this.imgUrl = this.bigImgUrl = url
       }

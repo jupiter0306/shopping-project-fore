@@ -1,8 +1,8 @@
 <template>
   <!-- 商品分类导航 -->
   <div class="type-nav">
-    <div class="container" @mouseleave="isSubNavShow=false">
-      <h2 class="all" @mouseover="isSubNavShow=true">全部商品分类</h2>
+    <div class="container" >
+      <h2 class="all" >全部商品分类</h2>
       <nav class="nav">
         <a href="javascript:void(0);">服装城</a>
         <a href="javascript:void(0);">美妆馆</a>
@@ -13,7 +13,7 @@
         <a href="javascript:void(0);">有趣</a>
         <a href="javascript:void(0);">秒杀</a>
       </nav>
-      <div class="sort" v-show="isHome || isSubNavShow">
+      <div class="sort" v-show="$route.name === 'home'">
         <div class="all-sort-list2" @click="goSearch" @mouseleave="delActive">
           <!-- 一级分类 -->
           <div
@@ -82,14 +82,11 @@ export default {
   data() {
     return {
       currentIndex: -1,
-      isSubNavShow:false,
     };
   },
   computed: {
     ...mapState("home", ["categoryList"]),
-    isHome(){
-      return this.$route.name == 'home'
-    }
+
   },
   methods: {
     addActive:throttle(function(index){

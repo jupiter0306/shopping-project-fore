@@ -57,7 +57,7 @@
                                     <i class="command">已有<span>{{good.hotScore}}</span>人评价</i>
                                 </div>
                                 <div class="operate">
-                                    <a href="javascript:void(0);" @click="addToCart" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                    <a href="javascript:void(0);" class="sui-btn btn-bordered btn-danger">加入购物车</a>
                                     <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
                                 </div>
                             </div>
@@ -197,9 +197,7 @@ export default {
       ]),
       ...mapState('search',{
         productList:state => state.productList
-      }
-        
-      ),
+      }),
       // 判断当前active的为升序/降序
       activeIcon(){
         return this.options.order.split(':')[1] === 'asc' ? 'icon-up' : 'icon-down'
@@ -289,22 +287,7 @@ export default {
       this.options.order = order
       this.getProductList()
     },
-    async addToCart(){
-      let {category1Id,category2Id,category3Id} = this.$route.query
-      let skuId = category1Id||category2Id||category3Id
-      let skuNum = 1
-      this.$store.dispatch('detail/getDetailInfo',skuId)
-      window.sessionStorage.setItem('SKU_INFO',JSON.stringify(this.skuInfo))
-        try {
-          await this.$store.dispatch('cart/addToCart',{skuId,skuNum})
-          this.$router.push({
-          path:'/addCartSucess',
-          query:{skuId,skuNum}
-          })
-        }catch(e){
-          alert(e)
-        }
-    }
+
   },
 
 

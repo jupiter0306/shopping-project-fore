@@ -3,10 +3,6 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <!-- 
-          banners为空数组 ==> 渲染Carousel ===> 创建Carousel, 调用mounted, 没有数据(长度为0)
-          异步获取banners数组 ==> 更新渲染Carousel ===> 调用watch的回调函数
-         -->
         <Carousel :banners="banners" />
       </div>
       <div class="right">

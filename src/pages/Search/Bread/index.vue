@@ -36,8 +36,6 @@ export default {
         removeTrademark:Function,
         removeProp:Function,
     }
-
-
 }
 </script>
 
